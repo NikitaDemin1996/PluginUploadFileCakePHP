@@ -1,23 +1,17 @@
 {
-    "name": "your-name-here/PluginUploadFileCakePHP",
+    "name": "PluginUploadFileCakePHP",
+    "authors": {
+        "name": "Nikita Demin",
+        "email": "nikita.demin.1996@inbox.ru",
+        "role": "Developer"
+    },
+    "version": "0.3",
+    "homepage": "https://github.com/NikitaDemin1996/PluginUploadFileCakePHP",
     "description": "PluginUploadFileCakePHP plugin for CakePHP",
     "type": "cakephp-plugin",
-    "require": {
-        "php": ">=5.4.16",
-        "cakephp/cakephp": "~3.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*"
-    },
     "autoload": {
         "psr-4": {
             "PluginUploadFileCakePHP\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "PluginUploadFileCakePHP\\Test\\": "tests",
-            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
     }
 }
