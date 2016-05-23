@@ -1,0 +1,12 @@
+
+<?php
+namespace PluginUploadFileCakePHP\Controller;
+
+use PluginUploadFileCakePHP\Controller\AppController;
+
+class FilesController extends AppController
+{
+
+}
+
+

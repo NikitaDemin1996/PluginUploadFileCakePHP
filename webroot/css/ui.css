@@ -1,0 +1,40 @@
+.input{
+    font-family: serif;
+    font: Georgia;
+    width: 300px;
+    font-size: 16px;
+    padding: 6px 8px 4px 10px;
+    border: 1px solid #cecece;
+    background: #F6F6f6;
+    border-radius: 8px;
+    margin-left:40px;
+    margin-top:20px;    
+}
+button{
+    background-color:#aaa;
+    margin-left: 350px;
+    float:left;
+    margin-top:30px;
+    margin-left: 40px;   
+}
+.file-alert{
+    font-family: serif;
+    color:#aaa;
+    margin-top:150px;
+    width: 700px;
+    height: 300px;
+    border: 1px solid #cecece;
+    background: #F6F6f6;
+    border-radius: 8px; 
+    font-size:25px;
+}
+#dropZone{
+    color:#aaa;
+    font-family: serif;
+    font-size:30px;
+    width: 450px;
+    height: 200px;
+    border: 2px dashed #aaa;
+    float:right;
+    margin-right: 30px;
+}
