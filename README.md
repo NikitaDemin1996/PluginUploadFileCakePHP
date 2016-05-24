@@ -1,4 +1,3 @@
-
 # PluginUploadFileCakePHP plugin for CakePHP
 
 ## Installation

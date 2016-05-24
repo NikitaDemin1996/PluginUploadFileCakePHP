@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # PluginUploadFileCakePHP plugin for CakePHP
 
 ## Installation
@@ -10,6 +10,4 @@ The recommended way to install composer packages is:
 ```
 composer require your-name-here/PluginUploadFileCakePHP
 ```
-=======
-# PluginUploadFileCakePHP
->>>>>>> 6c7094c7962cb441ddecadb7151a00e01032cc1a
+

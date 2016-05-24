@@ -4,7 +4,7 @@ use Cake\Routing\Router;
 
 Router::plugin(
     'PluginUploadFileCakePHP',
-    ['path' => '/plugin-upload-file-cake-p-h-p'],
+    ['path' => '/plugin-upload-file-cake-php'],
     function (RouteBuilder $routes) {
         $routes->fallbacks('DashedRoute');
     }
