@@ -1,7 +1,15 @@
 <?php
 use Migrations\AbstractMigration;
-class UploadFilesTables extends AbstractMigration
+
+class UploadFile extends AbstractMigration
 {
+    /**
+     * Change Method.
+     *
+     * More information on this method is available here:
+     * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+     * @return void
+     */
     public function change()
     {
         $tableFile = $this->table('file',['id' => false, 'primary_key' => ['id']]);
@@ -21,21 +29,21 @@ class UploadFilesTables extends AbstractMigration
         $tableFile->addColumn('data', 'datetime');
         $tableFile->create();
         
-        $tableFile = $this->table('task',['id' => false, 'primary_key' => ['id']]);
-        $tableFile->addColumn('id', 'integer', [
+        $tableFileS = $this->table('task',['id' => false, 'primary_key' => ['id']]);
+        $tableFileS->addColumn('id', 'integer', [
                 'autoIncrement' => true,
                 'limit' => 11
             ]);
        
-        $tableFile->addColumn('file_name', 'string', [
+        $tableFileS->addColumn('file_name', 'string', [
              'default' => null,
             'limit' => 1000
         ]);
-        $tableFile->addColumn('task_name', 'string', [
+        $tableFileS->addColumn('task_name', 'string', [
              'default' => null,
             'limit' => 1000
         ]);
-        $tableFile->addColumn('data', 'datetime');
-        $tableFile->create();
+        $tableFileS->addColumn('data', 'datetime');
+        $tableFileS->create();
     }
 }
