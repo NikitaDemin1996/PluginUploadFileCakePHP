@@ -18,6 +18,7 @@ class UploadFile extends AbstractMigration
             'limit' => 11
         ]);       
         $tableFile->addColumn('name_file', 'string', [
+            'default' => null,
             'limit' => 1000
         ]);
         $tableFile->addColumn('error_name', 'string', [
