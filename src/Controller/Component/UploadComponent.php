@@ -47,7 +47,7 @@ class UploadComponent extends Component
                      'data' =>$result_date                                            
                     ]);
                 $task->save($result_task);     
-                echo "<script>alert(\"Файл(ы) успшено загружен(ы) на сервер.\");</script>";
+                echo "<script>alert(\"Файл {$filename} успшено загружен на сервер.\");</script>";
                 #if($ad=$this->resolutionFile($file_tmp_name,$file,$list)){
                 #return $ad;}    
             }
@@ -145,13 +145,13 @@ class UploadComponent extends Component
     /*
      * function inspection resolution file
      */
-    public function resolutionFile($file_tmp_name,$file,$list)
+    public function resolutionFile($file_tmp_name,$file,$list,$param)
     {
-        $pic_width = 3000;
-        $pic_height = 3000;
+        #$pic_width = 3000;
+        #$pic_height = 3000;
         $size = getimagesize($file_tmp_name);
         array_push($list,['name'=>$file['name'],'type'=>$file['type'],'width'=>$size[0] ,'height'=>$size[1],'size'=>$file['size']]);
-        if ($size[0] < $pic_width && $size[1] < $pic_height){
+        if ($size[0] < $param['pic_width'] && $size[1] < $param['pic_height']){
             return $list;
         }
         else{
