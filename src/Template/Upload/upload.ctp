@@ -1,6 +1,6 @@
 <?php echo $this->Form->create(null, ['type' => 'file']);
-    echo $this->Html->css(['ui']);
-    echo $this->Html->script(['draganddrop','progressbar','jquery.min']);
+    echo $this->Html->css(['PluginUploadFileCakePHP.ui']);
+    echo $this->Html->script(['PluginUploadFileCakePHP.draganddrop','PluginUploadFileCakePHP.progressbar','PluginUploadFileCakePHP.jquery.min']);
     $files = $this->get('list');
 ?>
 <label>UploadImage</label>

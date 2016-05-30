@@ -4,6 +4,7 @@ namespace PluginUploadFileCakePHP\Controller\Component;
 use Cake\Controller\Component;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Exception\InternalErrorException;
+use Cake\Core\Configure;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -13,55 +14,43 @@ use Cake\Network\Exception\InternalErrorException;
  */
 class UploadComponent extends Component
 {
-    #public $components = ['CakeD.TaskManager'];
-    /*
-        * Count upload file
-        */
-    public $max_files = 3;
     /*
         * function main
         */
     public function main($data){
+        Configure::load('UploadConfig');
+        $param = Configure::read('Upload');
     	if ( !empty($data) ) {
-            if (count( $data ) > $this->max_files) {
-    		$message = 'Error Processing Request. Max number files accepted is '.$this->max_files;
+            if (count( $data ) > $param['max_files']) {
+    		$message = 'Error Processing Request. Max number files accepted is '.$param['max_files'];
                 $this->recordError($message, $data);
-                throw new InternalErrorException("Error Processing Request. Max number files accepted is {$this->max_files}", 1);
+                throw new InternalErrorException("Error Processing Request. Max number files accepted is {$param['max_files']}", 1);
             }
-            $filenamess = [];
-            $list=[];
             foreach ($data as $file) {
                 $error = $this->triggerErrors($file);
-                    if ($error === false) {
-                        continue;
-                    }   
-                    elseif (is_string($error)) {
-                        $this->recordError($error,$file);                      
-                        throw new \ErrorException($error);   
-                    }
+                if ($error === false) {
+                    continue;
+                }   
+                elseif (is_string($error)) {
+                    $this->recordError($error,$file);                      
+                    throw new \ErrorException($error);   
+                }
                 $file_tmp_name = $file['tmp_name'];
                 $this->inspection($file,$file_tmp_name);                     
                 $filename = $file['name'];
-    		$dir = WWW_ROOT.'img'.DS.'uploads';
-                #var_dump($file);
-                if( is_uploaded_file($file_tmp_name)){
-                    if($ad=$this->resolutionFile($file_tmp_name,$file,$list)){
-                            return $ad;}                                       
-                    $task = TableRegistry::get('task');
-                    $result_date = new \DateTime('now', new \DateTimeZone('Asia/Novosibirsk'));
-                    $result_task = $task->newEntity(
-                        ['file_name' => $filename,
-                         'task_name' => $this->request->data['task_name'],   
-                         'data' =>$result_date                                            
-                        ]);
-                    $task->save($result_task);     
-                    array_push($filenamess, $dir.DS.$filename);
-                    move_uploaded_file($file_tmp_name, $dir.DS.$filename);  
-                    echo "<script>alert(\"Файл(ы) успшено загружен(ы) на сервер.\");</script>";                   
-    		}
+                move_uploaded_file($file_tmp_name, $param['dir'].DS.$filename);      
+                $task = TableRegistry::get('task');
+                $result_date = new \DateTime('now', new \DateTimeZone('Asia/Novosibirsk'));
+                $result_task = $task->newEntity(
+                    ['file_name' => $filename,
+                     'task_name' => $this->request->data['task_name'],   
+                     'data' =>$result_date                                            
+                    ]);
+                $task->save($result_task);     
+                echo "<script>alert(\"Файл(ы) успшено загружен(ы) на сервер.\");</script>";
+                #if($ad=$this->resolutionFile($file_tmp_name,$file,$list)){
+                #return $ad;}    
             }
-            #$task = $this->TaskManager->createTask('/home/nikitademin/Документы/configs/dropbox.yml', $exec_time = null);
-            #$task->addSubtask($filenamess);
     	}
     }
     
@@ -117,7 +106,7 @@ class UploadComponent extends Component
                ]);
             $file_a->save($result_error);   
         }
-        return TRUE;    
+        return TRUE;        
     }
     
     /*
