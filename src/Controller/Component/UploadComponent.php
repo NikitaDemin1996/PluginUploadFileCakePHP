@@ -26,6 +26,7 @@ class UploadComponent extends Component
                 $this->recordError($message, $data);
                 throw new InternalErrorException("Error Processing Request. Max number files accepted is {$param['max_files']}", 1);
             }
+            $list=[];
             foreach ($data as $file) {
                 $error = $this->triggerErrors($file);
                 if ($error === false) {
@@ -38,6 +39,7 @@ class UploadComponent extends Component
                 $file_tmp_name = $file['tmp_name'];
                 $this->inspection($file,$file_tmp_name);                     
                 $filename = $file['name'];
+                $this->resolutionFile($file_tmp_name,$file,$list,$param); 
                 move_uploaded_file($file_tmp_name, $param['dir'].DS.$filename);      
                 $task = TableRegistry::get('task');
                 $result_date = new \DateTime('now', new \DateTimeZone('Asia/Novosibirsk'));
@@ -47,9 +49,7 @@ class UploadComponent extends Component
                      'data' =>$result_date                                            
                     ]);
                 $task->save($result_task);     
-                echo "<script>alert(\"Файл {$filename} успшено загружен на сервер.\");</script>";
-                #if($ad=$this->resolutionFile($file_tmp_name,$file,$list)){
-                #return $ad;}    
+                echo "<script>alert(\"Файл {$filename} успешно загружен на сервер.\");</script>";  
             }
     	}
     }
