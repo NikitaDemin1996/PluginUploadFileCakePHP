@@ -27,6 +27,7 @@ class UploadComponent extends Component
                 throw new InternalErrorException("Error Processing Request. Max number files accepted is {$param['max_files']}", 1);
             }
             $list=[];
+            $array_files=[];
             foreach ($data as $file) {
                 $error = $this->triggerErrors($file);
                 if ($error === false) {
@@ -39,7 +40,7 @@ class UploadComponent extends Component
                 $file_tmp_name = $file['tmp_name'];
                 $this->inspection($file,$file_tmp_name);                     
                 $filename = $file['name'];
-                $this->resolutionFile($file_tmp_name,$file,$list,$param); 
+                $this->resolutionFile($file_tmp_name, $file, $list, $param);                               
                 move_uploaded_file($file_tmp_name, $param['dir'].DS.$filename);      
                 $task = TableRegistry::get('task');
                 $result_date = new \DateTime('now', new \DateTimeZone('Asia/Novosibirsk'));
@@ -147,8 +148,6 @@ class UploadComponent extends Component
      */
     public function resolutionFile($file_tmp_name,$file,$list,$param)
     {
-        #$pic_width = 3000;
-        #$pic_height = 3000;
         $size = getimagesize($file_tmp_name);
         array_push($list,['name'=>$file['name'],'type'=>$file['type'],'width'=>$size[0] ,'height'=>$size[1],'size'=>$file['size']]);
         if ($size[0] < $param['pic_width'] && $size[1] < $param['pic_height']){
