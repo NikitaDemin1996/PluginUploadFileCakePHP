@@ -8,5 +8,27 @@ The recommended way to install composer packages is:
 
 ```
 composer require your-name-here/PluginUploadFileCakePHP
+
+Установка
+
+Установка через composer:
+
+    Добавить в Composer.json следующие строки
+
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/nikitademin1996/PluginUploadFileCakePHP"
+    }
+],
+"require": {
+    "pluginuploadfilecakephp": "dev-master"
+}
+
+
+    Из корневого каталога проекта выполнить в командной строке php composer.phar update
+    Для миграции таблиц, из корневого каталога выполнить bin/cake migrations migrate -p PluginUploadFileCakePHP
+
+
 ```
 
