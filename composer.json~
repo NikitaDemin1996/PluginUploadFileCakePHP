@@ -1,12 +1,12 @@
 {
-    "name": "PluginUploadFileCakePHP",
+    "name": "nikitademin/plugin-upload-file-cake-php",
     "authors": {
         "name": "Nikita Demin",
         "email": "nikita.demin.1996@inbox.ru",
         "role": "Developer"
     },
     "version": "0.3",
-    "homepage": "https://github.com/NikitaDemin1996/PluginUploadFileCakePHP",
+    "homepage": "https://github.com/nikitademin1996/PluginUploadFileCakePHP",
     "description": "PluginUploadFileCakePHP plugin for CakePHP",
     "type": "cakephp-plugin",
     "autoload": {
