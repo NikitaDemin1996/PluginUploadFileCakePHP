@@ -15,12 +15,6 @@ composer require your-name-here/PluginUploadFileCakePHP
 
     Добавить в Composer.json следующие строки
 
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/nikitademin1996/PluginUploadFileCakePHP"
-    }
-],
 "require": {
     "pluginuploadfilecakephp": "dev-master"
 }
